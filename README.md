@@ -151,10 +151,10 @@ Project Link: [https://github.com/CivicaDigital/training-node-express-api](https
 [forks-shield]: https://img.shields.io/github/forks/CivicaDigital/training-node-express-api?label=forks
 [forks-url]: https://github.com/CivicaDigital/training-node-express-api/network/members
 [stars-shield]: https://img.shields.io/github/stars/CivicaDigital/training-node-express-api
-[stars-url]: https://github.com/CivicaDigital/repo/stargazers
+[stars-url]: https://github.com/CivicaDigital/training-node-express-api/stargazers
 [issues-shield]: https://img.shields.io/github/issues/CivicaDigital/training-node-express-api
-[issues-url]: https://github.com/CivicaDigital/repo/issues
+[issues-url]: https://github.com/CivicaDigital/training-node-express-api/issues
 [license-shield]: https://img.shields.io/github/license/CivicaDigital/training-node-express-api
-[license-url]: https://github.com/CivicaDigital/repo/blob/master/LICENSE.txt
+[license-url]: https://github.com/CivicaDigital/training-node-express-api/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=flat-square&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/simon-thomas-5a521651
