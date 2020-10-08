@@ -13,7 +13,7 @@
 <!-- PROJECT LOGO
 <br />
 <p align="center">
-  <a href="https://github.com/simon-says-test/training-express-api-sql">
+  <a href="https://github.com/CivicaDigital/training-node-express-api">
     <img src="https://nodejs.org/static/images/logos/nodejs-new-pantone-black.ai" alt="Logo" width="122" height="75">
   </a>
 -->
@@ -22,9 +22,9 @@
   <p align="center">
     A simple Node/Express API, with a back-end SQLite database, for use in training when introducing concepts such as HTTP, REST, JavaScript and aysnchronous operations. 
     <br />
-    <a href="https://github.com/simon-says-test/training-express-api-sql/issues">Report Bug</a>
+    <a href="https://github.com/CivicaDigital/training-node-express-api/issues">Report Bug</a>
     ·
-    <a href="https://github.com/simon-says-test/training-express-api-sql/issues">Request Feature</a>
+    <a href="https://github.com/CivicaDigital/training-node-express-api/issues">Request Feature</a>
   </p>
 </p>
 
@@ -84,7 +84,7 @@ While not technically required, the following packages are used to help enforce 
 1. Clone the repo
 
 ```sh
-git clone https://github.com/simon-says-test/training-express-api-sql.git
+git clone https://github.com/CivicaDigital/training-node-express-api.git
 ```
 
 2. Install NPM packages
@@ -113,7 +113,7 @@ npm test
 
 ## Roadmap
 
-See the [open issues](https://github.com/simon-says-test/training-express-api-sql/issues) for a list of proposed features (and known issues). It is expected that most, if not all, of these should be left open and not fixed on the master branch in order that they remian as an exercise for people using this repository as part of training.
+See the [open issues](https://github.com/CivicaDigital/training-node-express-api/issues) for a list of proposed features (and known issues). It is expected that most, if not all, of these should be left open and not fixed on the master branch in order that they remian as an exercise for people using this repository as part of training.
 
 <!-- CONTRIBUTING -->
 
@@ -137,7 +137,7 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 ## Contact
 
-Project Link: [https://github.com/simon-says-test/training-express-api-sql](https://github.com/simon-says-test/training-express-api-sql)
+Project Link: [https://github.com/CivicaDigital/training-node-express-api](https://github.com/CivicaDigital/training-node-express-api)
 
 <!-- ACKNOWLEDGEMENTS -->
 
@@ -148,13 +148,13 @@ Project Link: [https://github.com/simon-says-test/training-express-api-sql](http
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 
-[forks-shield]: https://img.shields.io/github/forks/simon-says-test/training-express-api-sql?label=forks
-[forks-url]: https://github.com/simon-says-test/training-express-api-sql/network/members
-[stars-shield]: https://img.shields.io/github/stars/simon-says-test/training-express-api-sql
-[stars-url]: https://github.com/simon-says-test/repo/stargazers
-[issues-shield]: https://img.shields.io/github/issues/simon-says-test/training-express-api-sql
-[issues-url]: https://github.com/simon-says-test/repo/issues
-[license-shield]: https://img.shields.io/github/license/simon-says-test/training-express-api-sql
-[license-url]: https://github.com/simon-says-test/repo/blob/master/LICENSE.txt
+[forks-shield]: https://img.shields.io/github/forks/CivicaDigital/training-node-express-api?label=forks
+[forks-url]: https://github.com/CivicaDigital/training-node-express-api/network/members
+[stars-shield]: https://img.shields.io/github/stars/CivicaDigital/training-node-express-api
+[stars-url]: https://github.com/CivicaDigital/repo/stargazers
+[issues-shield]: https://img.shields.io/github/issues/CivicaDigital/training-node-express-api
+[issues-url]: https://github.com/CivicaDigital/repo/issues
+[license-shield]: https://img.shields.io/github/license/CivicaDigital/training-node-express-api
+[license-url]: https://github.com/CivicaDigital/repo/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=flat-square&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/simon-thomas-5a521651
