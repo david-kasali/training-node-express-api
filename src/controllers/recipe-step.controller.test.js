@@ -23,10 +23,12 @@ getRecipeSteps.mockReturnValue(
   ])
 );
 deleteRecipeStep.mockReturnValue(Promise.resolve({ changes: 1 }));
-updateRecipeStep.mockReturnValue(Promise.resolve({ changes: 2 }));
-createRecipeStep.mockReturnValue(Promise.resolve({ changes: 4 }));
+updateRecipeStep.mockReturnValue(Promise.resolve({ changes: 1 }));
+createRecipeStep.mockReturnValue(Promise.resolve({ changes: 1 }));
 const { updateRecipeSteps } = require('./recipe-step.controller');
-
+afterEach(() => {​​​​​​​
+  jest.clearAllMocks();
+}​​​​​​​);
 describe('update recipe steps collection', () => {
   test('The correct number of changes is returned', async () => {
     const result = await updateRecipeSteps(1, [
@@ -43,6 +45,6 @@ describe('update recipe steps collection', () => {
         step_text: 'new step two',
       },
     ]);
-    expect(result.changes).toEqual(7);
+    expect(result.changes).toEqual(3);
   });
 });
