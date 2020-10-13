@@ -25,6 +25,16 @@ const updateRecipeSteps = async (recipeId, currentSteps) => {
     (step) => !currentSteps.some((item) => item.recipe_step_id === step.recipe_step_id)
   );
 
+  const updatedSteps = [];
+
+  for (let i = 0; i < currentSteps.length; i++) {
+    const step = currentSteps[i];
+
+    step.step_number = i + 1;
+
+    updatedSteps.push(step);
+  }
+
   const promises = stepsToDelete.map((step) =>
     recipeStepConnector.deleteRecipeStep(step.recipe_step_id)
   );
@@ -38,7 +48,7 @@ const updateRecipeSteps = async (recipeId, currentSteps) => {
   });
 
   const changes = (await Promise.all(promises)).reduce((prev, curr) => prev + curr.changes, 0);
-  return { changes };
+  return { changes, currentSteps };
 };
 
 module.exports = {
