@@ -25,10 +25,9 @@ const updateRecipeSteps = async (recipeId, currentSteps) => {
     (step) => !currentSteps.some((item) => item.recipe_step_id === step.recipe_step_id)
   );
 
-  const updatedSteps = currentSteps.map((step, index) => {
-    step.step_number = index + 1;
-    return step;
-  });
+  const updatedSteps = currentSteps.map((step, index) =>
+    Object.assign(step, { step_number: index + 1 })
+  );
 
   const promises = stepsToDelete.map((step) =>
     recipeStepConnector.deleteRecipeStep(step.recipe_step_id)
