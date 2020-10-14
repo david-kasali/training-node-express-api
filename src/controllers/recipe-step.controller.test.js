@@ -107,8 +107,73 @@ describe('update recipe steps collection', () => {
 
     expect(result.currentSteps.map((step) => step.step_number)).toEqual([1, 2]);
   });
+
+  test('Error returned if deletion fails', async () => {
+    // Given
+    const newSteps = [
+      {
+        recipe_step_id: 11,
+        recipe_id: 1,
+        step_number: 2,
+        step_text: 'step one',
+      },
+    ];
+    deleteRecipeStep.mockImplementation(() =>
+      Promise.reject(new Error('Failed to delete recipe step'))
+    );
+    // When
+    const result = await updateRecipeSteps(1, newSteps);
+    // Then
+    expect(result.error.message).toEqual('Failed to delete recipe step');
+  });
+
+  test('Error returned if update fails', async () => {
+    // Given
+    const newSteps = [
+      {
+        recipe_step_id: 11,
+        recipe_id: 1,
+        step_number: 2,
+        step_text: 'step one',
+      },
+      {
+        recipe_step_id: 12,
+        recipe_id: 1,
+        step_number: 2,
+        step_text: 'step two',
+      },
+    ];
+    updateRecipeStep.mockImplementation(() =>
+      Promise.reject(new Error('Failed to update recipe step'))
+    );
+    // When
+    const result = await updateRecipeSteps(1, newSteps);
+    // Then
+    expect(result.error.message).toEqual('Failed to update recipe step');
+  });
+
+  test('Error returned if create fails', async () => {
+    // Given
+    getRecipeSteps.mockReturnValue(Promise.resolve([]));
+    const newSteps = [
+      {
+        recipe_step_id: null,
+        recipe_id: 1,
+        step_number: 2,
+        step_text: 'step one',
+      },
+    ];
+    createRecipeStep.mockImplementation(() =>
+      Promise.reject(new Error('Failed to create recipe step'))
+    );
+    // When
+    const result = await updateRecipeSteps(1, newSteps);
+    // Then
+    expect(result.error.message).toEqual('Failed to create recipe step');
+  });
 });
 
+/*
 describe('update recipe steps collection', () => {
   test('The correct number of changes is returned', async () => {
     const result = await updateRecipeSteps(1, [
@@ -177,4 +242,5 @@ describe('update recipe steps collection', () => {
     ]);
     promise.then((result) => result.changes.toEqual(3));
   });
-});
+}); 
+*/
