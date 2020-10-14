@@ -20,11 +20,11 @@ const updateRecipeStep = async (id, recipeStep) => {
 // Updates the current recipe steps using the supplied array
 // Steps that no longer exist are deleted, existing ones are upadted and new ones created
 // TODO: Renumber recipe steps upon update
-const updateRecipeSteps = async (recipeId, currentSteps) => {
+const updateRecipeSteps = async (recipeId, submittedSteps) => {
   const stepsToDelete = (await recipeStepConnector.getRecipeSteps(recipeId)).filter(
-    (step) => !currentSteps.some((item) => item.recipe_step_id === step.recipe_step_id)
+    (step) => !submittedSteps.some((item) => item.recipe_step_id === step.recipe_step_id)
   );
-  const updatedSteps = currentSteps.map((step, index) =>
+  const updatedSteps = submittedSteps.map((step, index) =>
     Object.assign(step, { step_number: index + 1 })
   );
 
@@ -32,7 +32,7 @@ const updateRecipeSteps = async (recipeId, currentSteps) => {
     recipeStepConnector.deleteRecipeStep(step.recipe_step_id)
   );
 
-  currentSteps.forEach((step) => {
+  submittedSteps.forEach((step) => {
     if (step.recipe_step_id) {
       promises.push(recipeStepConnector.updateRecipeStep(step.recipe_step_id, step));
     } else {
@@ -40,8 +40,12 @@ const updateRecipeSteps = async (recipeId, currentSteps) => {
     }
   });
 
-  const changes = (await Promise.all(promises)).reduce((prev, curr) => prev + curr.changes, 0);
-  return { changes, currentSteps };
+  try {
+    const changes = (await Promise.all(promises)).reduce((prev, curr) => prev + curr.changes, 0);
+    return { changes, currentSteps: submittedSteps };
+  } catch (e) {
+    return { error: e };
+  }
 };
 
 module.exports = {

@@ -93,4 +93,71 @@ describe('update recipe steps collection', () => {
     //then
     expect(result.currentSteps.map((step) => step.step_number)).toEqual([1, 2]);
   });
+
+  test('Error returned if deletion fails', async () => {
+    //Given
+    const newSteps = [
+      {
+        recipe_step_id: 11,
+        recipe_id: 1,
+        step_number: 1,
+        step_text: 'step one',
+      },
+    ];
+    deleteRecipeStep.mockImplementation(() =>
+      Promise.reject(new Error('failed to delete recipe step'))
+    );
+
+    //when
+    const result = await updateRecipeSteps(1, newSteps);
+    //then
+    expect(result.error.message).toEqual('failed to delete recipe step');
+  });
+
+  test('Error returned if update fails', async () => {
+    //Given
+    const newSteps = [
+      {
+        recipe_step_id: 11,
+        recipe_id: 1,
+        step_number: 1,
+        step_text: 'step one',
+      },
+      {
+        recipe_step_id: 12,
+        recipe_id: 1,
+        step_number: 2,
+        step_text: 'step two',
+      },
+    ];
+    updateRecipeStep.mockImplementation(() =>
+      Promise.reject(new Error('failed to update recipe step'))
+    );
+
+    //when
+    const result = await updateRecipeSteps(1, newSteps);
+    //then
+    expect(result.error.message).toEqual('failed to update recipe step');
+  });
+
+  test('Error returned if create fails', async () => {
+    //Given#
+    getRecipeSteps.mockReturnValue(Promise.resolve([]));
+    const newSteps = [
+      {
+        recipe_step_id: 11,
+        recipe_id: 1,
+        step_number: 1,
+        step_text: 'step one',
+      },
+    ];
+    createRecipeStep.mockImplementation(() =>
+      Promise.reject(new Error('failed to create recipe step'))
+    );
+
+    //when
+    const result = await updateRecipeSteps(1, newSteps);
+    //then
+    expect(result.error.message).toEqual('failed to update recipe step');
+  });
 });
