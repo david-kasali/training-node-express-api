@@ -27,6 +27,8 @@ class Connection {
     try {
       await Connection.run('DROP TABLE IF EXISTS recipes', []);
       await Connection.run('DROP TABLE IF EXISTS recipe_steps', []);
+      await Connection.run('DROP TABLE IF EXISTS recipe_ingredients', []);
+      await Connection.run('DROP TABLE IF EXISTS recipe_ingredients_steps', []);
       const sqlCreateRecipes = `CREATE TABLE IF NOT EXISTS recipes (
         recipe_id INTEGER PRIMARY KEY,
         title VARCHAR(50) NOT NULL,
@@ -42,7 +44,28 @@ class Connection {
         FOREIGN KEY (recipe_id)
           REFERENCES recipes (recipe_id)
       );`;
+      await Connection.run(sqlCreateRecipes, []);
+      const sqlCreateIngredients = `CREATE TABLE IF NOT EXISTS recipe_ingredients (
+        recipe_ingredient_id INTEGER PRIMARY KEY,
+        recipe_id INTEGER NOT NULL,
+        ingredient_number VARCHAR(50) NOT NULL,
+        name VARCHAR(255) NOT NULL,
+        FOREIGN KEY (recipe_id)
+          REFERENCES recipes (recipe_id)
+      );`;
+      await Connection.run(sqlCreateRecipes, []);
+      const sqlCreateStepIngredient = `CREATE TABLE IF NOT EXISTS recipe_StepIngredient (
+        recipe_ingredient_id recipe_step_id INTEGER PRIMARY KEY,
+        recipe_id INTEGER NOT NULL,
+        ingredient_number step_number VARCHAR(50) NOT NULL,
+        name VARCHAR(255) NOT NULL,
+        FOREIGN KEY (recipe_id)
+          REFERENCES recipes (recipe_id)
+      );`;
+
       await Connection.run(sqlCreateSteps, []);
+      await Connection.run(sqlCreateIngredients, []);
+      await Connection.run(sqlCreateStepIngredient, []);
     } catch (err) {
       winston.error(err.message);
       throw err;
@@ -86,6 +109,23 @@ class Connection {
         }
       });
     });
+  }
+
+  static async inTransaction(actions) {
+    //start transaction
+    await Connection.run('BEGIN TRANSACTION', []);
+    let result;
+    try {
+      //run user action
+      result = await actions();
+      //commit or roll back
+      await Connection.run('COMMIT', []);
+    } catch (e) {
+      await Connection.run('Rollback', []);
+      throw e;
+    }
+
+    return result;
   }
 }
 
