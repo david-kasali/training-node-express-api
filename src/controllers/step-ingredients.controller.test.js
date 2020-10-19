@@ -25,8 +25,8 @@ afterEach(() => {
   jest.clearAllMocks();
 });
 
-describe('update step ingredients collection', () => {
-  test('Entry is created', async () => {
+describe('Updating step ingredients', () => {
+  test('Create a step ingredient', async () => {
     const result = await updateStepIngredients(1, [
       {
         recipe_step_id: 1,
@@ -47,7 +47,7 @@ describe('update step ingredients collection', () => {
     expect(createStepIngredient.mock.calls.length).toEqual(1);
   });
 
-  test('Entry is deleted', async () => {
+  test('Delete a step ingredient', async () => {
     const result = await updateStepIngredients(1, [
       {
         recipe_step_id: 1,
@@ -58,5 +58,22 @@ describe('update step ingredients collection', () => {
     expect(getStepIngredients.mock.calls.length).toEqual(1);
     expect(deleteStepIngredient.mock.calls.length).toEqual(1);
     expect(createStepIngredient.mock.calls.length).toEqual(0);
+  });
+
+    test('Delete and create step ingredients', async () => {
+    const result = await updateStepIngredients(1, [
+       {
+        recipe_step_id: 7,
+        recipe_ingredient_id: 7,
+      },
+      {
+        recipe_step_id: 6,
+        recipe_ingredient_id: 2,
+      },
+    ]);
+    expect(result.changes).toEqual(4);
+    expect(getStepIngredients.mock.calls.length).toEqual(1);
+    expect(deleteStepIngredient.mock.calls.length).toEqual(2);
+    expect(createStepIngredient.mock.calls.length).toEqual(2);
   });
 });

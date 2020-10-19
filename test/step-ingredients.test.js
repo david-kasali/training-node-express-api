@@ -104,8 +104,7 @@ describe('HTTP requests to /step-ingredients', () => {
     const putResponse = await request(app)
       .put(`/recipes/1/recipe-steps/99/step-ingredients`)
       .send(newData)
-      .set('Accept', 'application/json');
-    //   .expect('Content-Type', /json/);
+      .set('Accept', 'application/json')
 
     expect(putResponse.status).toEqual(404);
 
